@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Farya — 19th Birthday</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+:root{--bg:#17171d;--silver:#d9d9e1;--pale:#f2edf1;--rose:#e7c3d2;--muted:#b2b2bd}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:#f4f2f5;font-family:Poppins,sans-serif;overflow-x:hidden;background:radial-gradient(circle at 18% 15%,#55556055,transparent 32%),radial-gradient(circle at 85% 78%,#8c718055,transparent 28%),linear-gradient(135deg,#111116,#292932 52%,#17171e)}
+#stars,.particles{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+#stars{z-index:0}
+.star{position:absolute;color:#d9d9e5;opacity:0;animation:twinkle 3s infinite}
+@keyframes twinkle{0%,100%{opacity:.1;transform:scale(.7)}50%{opacity:.85;transform:scale(1.2)}}
+.particles{z-index:5}
+.particle{position:absolute;border-radius:50%;background:#e6e6f0;box-shadow:0 0 8px 3px #d9d9e888;pointer-events:none;animation:trailFall 1.5s ease-out forwards}
+@keyframes trailFall{to{transform:translate(var(--dx),100px) scale(.1);opacity:0}}
+.page{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:26px 14px}
+.shell{width:min(100%,780px);min-height:590px;position:relative;overflow:hidden;border:1px solid #ffffff25;border-radius:30px;background:linear-gradient(145deg,#ffffff16,#ffffff05);box-shadow:0 28px 90px #0008,inset 0 1px #ffffff20;backdrop-filter:blur(18px)}
+.shell:before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:#d9d9e20d;filter:blur(5px);top:-210px;right:-100px}
+.screen{display:none;min-height:590px;padding:clamp(25px,6vw,52px);position:relative;animation:screenIn .7s ease both}
+.screen.active{display:flex;flex-direction:column;align-items:center;justify-content:center}
+@keyframes screenIn{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.eyebrow{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:#c6c6d0}
+.script{font-family:'Great Vibes',cursive;color:#f1e7ee;text-shadow:0 0 25px #e8c6d633}
+.hero{font-size:clamp(4rem,13vw,7.2rem);line-height:.92}
+.serif{font-family:'Playfair Display',serif}
+.name{font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:.04em;color:#e4e2e9}
+.muted{color:#bcbcc7}
+.divider{display:flex;align-items:center;gap:12px;color:#d7cbd4;margin:18px 0}
+.divider:before,.divider:after{content:"";height:1px;width:55px;background:linear-gradient(90deg,transparent,#aaaab8)}
+.divider:after{transform:rotate(180deg)}
+.btn-silver{color:#22222a;background:linear-gradient(135deg,#f1f1f4,#bcbcc7);border:0;border-radius:999px;padding:12px 24px;font-weight:600;box-shadow:0 8px 25px #0004;transition:.25s}
+.btn-silver:hover{color:#111;transform:translateY(-3px);box-shadow:0 12px 30px #0006}
+.btn-outline-silver{color:#eeeaf0;border:1px solid #ffffff35;border-radius:999px;padding:11px 22px;background:#ffffff08;transition:.25s}
+.btn-outline-silver:hover{color:white;background:#ffffff16;transform:translateY(-2px)}
+.card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%;margin-top:24px}
+.memory-card{min-height:145px;border:1px solid #ffffff20;border-radius:20px;padding:20px;background:linear-gradient(145deg,#ffffff12,#ffffff04);text-align:left;cursor:pointer;transition:transform .35s,border-color .35s,background .35s;position:relative;overflow:hidden}
+.memory-card:hover{transform:translateY(-5px) rotate(-.5deg);border-color:#e6cbd9a0;background:#ffffff15}
+.memory-card .emoji{font-size:1.7rem;display:block;margin-bottom:10px}
+.memory-card h3{font:500 1.05rem 'Playfair Display',serif;color:#f0eaf0;margin:0 0 6px}
+.memory-card p{font-size:.8rem;color:#bdbdc7;margin:0}
+.memory-card.revealed{border-color:#e7c3d2a8;background:#e7c3d218}
+.reveal-text{display:none;color:#eee4eb;font-size:.88rem;line-height:1.7;margin-top:10px}
+.memory-card.revealed .reveal-text{display:block;animation:screenIn .4s ease}
+.progress-dots{display:flex;gap:7px;justify-content:center;margin:20px 0}
+.dot{width:6px;height:6px;border-radius:50%;background:#ffffff35;transition:.3s}
+.dot.active{width:22px;border-radius:10px;background:#e8dce5}
+.letter{font:clamp(1rem,2.5vw,1.15rem)/1.95 'Playfair Display',serif;color:#e8e4eb;white-space:pre-line}
+.signature{font:2.7rem 'Great Vibes',cursive;color:#e8c8d7}
+.cake-wrap{position:relative;width:230px;height:210px;margin:10px auto 22px}
+.cake{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:180px;height:95px;border-radius:12px 12px 18px 18px;background:linear-gradient(#d9d9df 0 18%,#aaaab5 18% 100%);box-shadow:inset -12px 0 #888894}
+.cake:before{content:"";position:absolute;top:0;left:0;width:100%;height:25px;border-radius:12px;background:#f0e8ed}
+.cake:after{content:"";position:absolute;top:18px;left:0;width:100%;height:14px;background:repeating-radial-gradient(ellipse at top,#e7c3d2 0 12px,transparent 13px 26px)}
+.plate{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:220px;height:20px;border-radius:50%;background:linear-gradient(#eeeef3,#9999a5);box-shadow:0 8px 18px #0005}
+.candle{position:absolute;bottom:104px;left:50%;transform:translateX(-50%);width:12px;height:42px;background:repeating-linear-gradient(135deg,#eee 0 6px,#b9b9c5 6px 12px);border-radius:3px}
+.flame{position:absolute;bottom:143px;left:50%;transform:translateX(-50%);width:18px;height:27px;border-radius:50% 50% 45% 45%;background:radial-gradient(ellipse at 50% 70%,#fff8d8 0 20%,#f0c7a2 45%,#e7c3d2 70%,transparent 72%);filter:drop-shadow(0 0 12px #f0c7a2);animation:flicker .16s infinite alternate;transform-origin:bottom}
+@keyframes flicker{to{transform:translateX(-50%) scale(.82) rotate(4deg)}}
+.flame.out{opacity:0;animation:none}
+.cake-hint{font-size:.8rem;color:#aaaab7}
+.photo-frame{width:min(100%,360px);min-height:245px;border:1px solid #ffffff28;border-radius:22px;background:linear-gradient(145deg,#ffffff13,#ffffff05);display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;position:relative;overflow:hidden}
+.photo-symbol{font-size:3rem;filter:drop-shadow(0 0 16px #e7c3d255)}
+.photo-caption{font:1.3rem 'Playfair Display',serif;color:#e8e2e9;margin-top:12px}
+.photo-sub{font-size:.8rem;color:#b6b6c1;margin-top:8px}
+.final-title{font-size:clamp(3.5rem,11vw,6rem);line-height:1}
+.small-note{font-size:.75rem;color:#9696a3;letter-spacing:.1em}
+  /* Ghazal card */
+.ghazal-screen{justify-content:flex-start!important}
+.ghazal-title{font-size:clamp(3rem,10vw,5rem);line-height:1.15}
+.ghazal-content{width:100%;text-align:center}
+.ghazal-heading{font:1.35rem 'Playfair Display',serif;color:#e8c8d7;margin:12px 0 22px}
+.ghazal-stanza{font:clamp(.96rem,2.5vw,1.12rem)/1.9 'Playfair Display',serif;color:#e8e4eb;margin:0 0 23px;white-space:pre-line}
+.ghazal-separator{color:#d8bdcc;font-size:1.1rem;margin:24px 0}
+.ghazal-dedication{font:2.3rem 'Great Vibes',cursive;color:#e8c8d7;margin-top:15px}
+.ghazal-footer{font-size:.8rem;color:#bcbcc7;margin-top:5px}
+@media(max-width:500px){.shell,.screen{min-height:570px}.card-grid{grid-template-columns:1fr}.memory-card{min-height:unset}.screen{padding:25px 20px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  
+  
+</style>
+</head>
+<body>
+<div id="stars"></div><div class="particles" id="particles"></div>
+<main class="page">
+<section class="shell">
+  <section class="screen active" id="s1">
+    <div class="eyebrow mb-3">A little birthday universe, made for you</div>
+    <h1 class="script hero text-center mb-3">Happy Birthday</h1>
+    <div class="name serif text-center">Farya Sheikh</div>
+    <div class="muted text-center mt-2">Komal Dua · My Hoor ul Ain</div>
+    <div class="divider">✦</div>
+    <div class="d-flex gap-2 flex-wrap justify-content-center mb-3">
+      <span class="badge rounded-pill border border-light border-opacity-25 text-light px-3 py-2">8 December</span>
+      <span class="badge rounded-pill border border-light border-opacity-25 text-light px-3 py-2">Your 19th birthday</span>
+    </div>
+    <p class="muted text-center mb-4">A few little moments, all carrying one big feeling.</p>
+    <button class="btn btn-silver" data-next>Begin your surprise ✨</button>
+    <div class="small-note mt-4">TAP · FEEL · SMILE</div>
+  </section>
+
+  <section class="screen" id="s2">
+    <div class="eyebrow">Chapter one</div>
+    <h2 class="script text-center" style="font-size:3.8rem">A wish for you</h2>
+    <div class="divider">♡</div>
+    <div class="photo-frame">
+      <div>
+        <div class="photo-symbol">☾ ✧ ♡</div>
+        <div class="photo-caption">May your days feel gentle</div>
+        <div class="photo-sub">May every sincere dua find its way to goodness.</div>
+      </div>
+    </div>
+    <p class="muted text-center mt-4">May Allah protect your heart, brighten your path, and bless your 19th year with peace, health, and beautiful surprises.</p>
+    <div class="d-flex gap-2 mt-3"><button class="btn btn-outline-silver" data-prev>Back</button><button class="btn btn-silver" data-next>Next ♡</button></div>
+  </section>
+
+  <section class="screen" id="s3">
+    <div class="eyebrow">Chapter two</div>
+    <h2 class="script text-center" style="font-size:3.6rem">Little things I adore</h2>
+    <p class="muted text-center">Tap each card to reveal a little note.</p>
+    <div class="card-grid">
+      <article class="memory-card"><span class="emoji">🤍</span><h3>Your heart</h3><p>A beautiful kind of softness</p><div class="reveal-text">The kindness and warmth you carry make you precious beyond words.</div></article>
+      <article class="memory-card"><span class="emoji">🌙</span><h3>Your presence</h3><p>A calm in my day</p><div class="reveal-text">Even a thought of you can make an ordinary moment feel special.</div></article>
+      <article class="memory-card"><span class="emoji">✨</span><h3>Your dreams</h3><p>Things I pray for</p><div class="reveal-text">I pray you reach every good dream meant for you, one step at a time.</div></article>
+      <article class="memory-card"><span class="emoji">🕊️</span><h3>Your smile</h3><p>My favorite little sight</p><div class="reveal-text">May life always give you reasons to smile with a peaceful heart.</div></article>
+    </div>
+    <div class="d-flex gap-2 mt-4"><button class="btn btn-outline-silver" data-prev>Back</button><button class="btn btn-silver" data-next>Next ♡</button></div>
+  </section>
+
+  <section class="screen" id="s4">
+    <div class="eyebrow">Chapter three</div>
+    <h2 class="script text-center" style="font-size:3.6rem">Make a birthday wish</h2>
+    <div class="cake-wrap" id="cakeWrap" aria-label="Birthday cake">
+      <div class="plate"></div><div class="cake"></div><div class="candle"></div><div class="flame" id="flame"></div>
+    </div>
+    <p class="serif text-center" style="font-size:1.2rem">Close your eyes, make a wish…</p>
+    <p class="cake-hint text-center">Swipe across the candle or tap the button to blow it out.</p>
+    <button class="btn btn-silver mt-2" id="blowBtn">Blow the candle ✨</button>
+    <div class="d-flex gap-2 mt-4"><button class="btn btn-outline-silver" data-prev>Back</button><button class="btn btn-silver" data-next>Next ♡</button></div>
+  </section>
+
+  <section class="screen" id="s5">
+    <div class="eyebrow">Chapter four</div>
+    <h2 class="script text-center" style="font-size:3.6rem">A little memory of us</h2>
+    <p class="muted text-center">A tiny collection of feelings—shuffle them to find another.</p>
+    <div class="photo-frame" id="memoryFrame">
+      <div>
+        <div class="photo-symbol" id="memoryIcon">♡</div>
+        <div class="photo-caption" id="memoryTitle">The thought of you</div>
+        <div class="photo-sub" id="memoryText">Some people make life feel softer just by being in it.</div>
+      </div>
+    </div>
+    <button class="btn btn-outline-silver mt-3" id="shuffleBtn">Shuffle this memory ↻</button>
+    <div class="d-flex gap-2 mt-4"><button class="btn btn-outline-silver" data-prev>Back</button><button class="btn btn-silver" data-next>Next ♡</button></div>
+  </section>
+<!-- Card 6: Ghazal -->
+<section class="screen ghazal-screen" id="s6">
+  <div class="eyebrow">A poem from my heart</div>
+  <h2 class="script ghazal-title text-center">Meri Hoor-ul-Ain ❤️</h2>
+  <div class="divider">♡</div>
+
+  <div class="ghazal-content">
+    <div class="ghazal-heading">Ek ghazal Saim ki taraf se Farya Sheikh k naam</div>
+
+    <div class="ghazal-stanza">Teri ankho me jo dekha, woh khuwab haseen tha,
+Mere dil k har ek kone me tera hi naam tha.</div>
+
+    <div class="ghazal-stanza">Teri muskurahat se roshan meri har ek raat hai,
+Tere hone se hi meri poori duniya aabad hai.</div>
+
+    <div class="ghazal-stanza">Teri ankho ka noor chand se kam nahi,
+Teri haseen muskurahat se pyara kuch bhi nahi.</div>
+
+    <div class="ghazal-stanza">Mai tujhe lafzo me kese bayan karu,
+Tu woh ehsaas hai jise mai har dua me yaad karu.</div>
+
+    <div class="ghazal-stanza">Tere begair har khushi adhuri si lagti hai,
+Teri mojoodgi har gham ko bhula deti hai.</div>
+
+    <div class="ghazal-stanza">Teri yaado me guzarta hai mera har lamha,
+Tujhe soch kar muskurata hai mera dil har lamha.</div>
+
+    <div class="ghazal-stanza">Kash taqdeer hume ek sath le aaye,
+Aur zindagi hume ek dusre ka humsafar banaye.</div>
+
+    <div class="ghazal-stanza">Na fasla ho darmiyan, na koi majboori rahe,
+Tere mere darmiyan bas waado ki roshni rahe.</div>
+
+    <div class="ghazal-stanza">Mai har mushkil me tera hath thamna chahu,
+Teri khushi k liye har dua mangu.</div>
+
+    <div class="ghazal-stanza">Na chand ki khwahish hai, na sitaro ki talab,
+Mujhe bas teri muskurahat se hai matlab.</div>
+
+    <div class="ghazal-stanza">Teri peshani pe sajde ka noor hamesha rahe,
+Teri zindagi me khushi ka mausam hamesha rahe.</div>
+
+    <div class="ghazal-stanza">Mai waada karta hu, tujhe izzat se chahu ga,
+Teri khushi me apni khushi dhundu ga.</div>
+
+    <div class="ghazal-stanza">Agar kabhi meri khamoshi tujhe udaas kare,
+To samajh lena mera dil tujhe yaad kare.</div>
+
+    <div class="ghazal-separator">✦ ♡ ✦</div>
+
+    <div class="ghazal-heading">Saim k dil se Farya Sheikh k liye</div>
+
+    <div class="ghazal-stanza">Tu meri zindagi ka woh haseen khuwab hai,
+Jise mai har roz apni dua me mangu.</div>
+
+    <div class="ghazal-stanza">Tu meri chahat, mera yaqeen, mera pyara ehsaas hai,
+Meri har adhuri ghazal ka tu hi aakhri alfaaz hai.</div>
+
+    <div class="ghazal-stanza">Na jaane taqdeer me kya likha hai mere liye,
+Magar meri har dua me ek hi naam hai — Farya Sheikh.</div>
+
+    <div class="ghazal-stanza">Tum meri woh dua ho jise mai hamesha mangu,
+Tum meri woh khushi ho jise mai kabhi khona na chahu. ❤️</div>
+  </div>
+
+  <div class="ghazal-dedication text-center">Saim k dil se</div>
+  <div class="ghazal-footer text-center">For my Hoor-ul-Ain 🤍</div>
+
+  <div class="d-flex gap-2 mt-4">
+    <button class="btn btn-outline-silver" data-prev>Back</button>
+    <button class="btn btn-silver" data-next>One last thing ♡</button>
+  </div>
+</section>
+  <section class="screen" id="s7">
+    <div class="eyebrow">From my heart to yours</div>
+    <h2 class="script final-title text-center">My dearest Farya</h2>
+    <div class="divider">♡</div>
+    <div class="letter">
+Happy 19th birthday, my Hoor ul Ain. 🤍
+
+If I could give you one thing today, it would be the feeling of how deeply cherished you are. You make ordinary moments feel precious, and even the thought of you brings a quiet smile to my heart.
+
+I pray this year brings you gentle days, answered duas, good health, peaceful nights, and happiness that stays. May Allah protect your smile, guide your steps, and bless every dream that is good for you.
+
+You are precious to me in ways words can only try to explain. I hope this birthday is as lovely and special as the heart you carry.
+
+Happy birthday, my love. May your 19th year be filled with barakah, joy, and beautiful beginnings.
+    </div>
+    <div class="text-center mt-3"><div class="signature">Always with love,</div><div class="muted">for my Komal Dua 🤍</div></div>
+    <div class="d-flex gap-2 mt-4"><button class="btn btn-outline-silver" data-prev>Back</button><button class="btn btn-silver" id="celebrateBtn">Celebrate us ✨</button></div>
+  </section>
+  <div class="progress-dots position-relative" id="dots" aria-label="Card progress"></div>
+</section>
+</main>
+<script>
+const screens=[...document.querySelectorAll('.screen')], dots=document.getElementById('dots');
+let current=0, blown=false, lastTrail=0;
+screens.forEach((_,i)=>{const d=document.createElement('span');d.className='dot'+(i===0?' active':'');dots.appendChild(d)});
+const dotEls=[...dots.children];
+function show(n){current=Math.max(0,Math.min(screens.length-1,n));screens.forEach((s,i)=>s.classList.toggle('active',i===current));dotEls.forEach((d,i)=>d.classList.toggle('active',i===current));}
+document.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>show(current+1)));
+document.querySelectorAll('[data-prev]').forEach(b=>b.addEventListener('click',()=>show(current-1)));
+document.querySelectorAll('.memory-card').forEach(card=>card.addEventListener('click',()=>card.classList.toggle('revealed')));
+
+const memories=[
+ ['♡','The thought of you','Some people make life feel softer just by being in it.'],
+ ['☾','A quiet dua','May every road ahead bring you closer to peace and goodness.'],
+ ['✧','A little smile','Even a small moment can become special when it reminds me of you.'],
+ ['🕊️','A gentle hope','May our future, if Allah wills, be filled with kindness and faith.'],
+ ['🤍','You, simply','You do not have to be anything other than your lovely self.']
+];
+let memIndex=0;
+function shuffleMemory(){let next;do{next=Math.floor(Math.random()*memories.length)}while(next===memIndex);memIndex=next;const m=memories[memIndex];const frame=document.getElementById('memoryFrame');frame.animate([{opacity:.2,transform:'scale(.97)'},{opacity:1,transform:'scale(1)'}],{duration:450,easing:'ease-out'});document.getElementById('memoryIcon').textContent=m[0];document.getElementById('memoryTitle').textContent=m[1];document.getElementById('memoryText').textContent=m[2]}
+document.getElementById('shuffleBtn').addEventListener('click',shuffleMemory);
+
+function blow(){if(blown)return;blown=true;document.getElementById('flame').classList.add('out');const r=document.getElementById('cakeWrap').getBoundingClientRect();confetti(r.left+r.width/2,r.top+70,55);document.getElementById('blowBtn').textContent='Wish made 🤍';}
+document.getElementById('blowBtn').addEventListener('click',blow);
+let startX=0,startY=0;
+const cake=document.getElementById('cakeWrap');
+cake.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;startY=e.touches[0].clientY},{passive:true});
+cake.addEventListener('touchend',e=>{const t=e.changedTouches[0];if(Math.abs(t.clientX-startX)>25||Math.abs(t.clientY-startY)>25)blow()},{passive:true});
+cake.addEventListener('pointerdown',e=>{startX=e.clientX;startY=e.clientY});
+cake.addEventListener('pointerup',e=>{if(Math.abs(e.clientX-startX)>25||Math.abs(e.clientY-startY)>25)blow()});
+
+function confetti(x,y,count=35){const colors=['#eeeeF2','#d4d4df','#e8c8d7','#aaaab8','#fff'];for(let i=0;i<count;i++){const p=document.createElement('span');p.className='particle';p.style.left=x+'px';p.style.top=y+'px';p.style.width=(4+Math.random()*6)+'px';p.style.height=(5+Math.random()*9)+'px';p.style.borderRadius=Math.random()>.5?'50%':'2px';p.style.background=colors[Math.floor(Math.random()*colors.length)];p.style.setProperty('--dx',(Math.random()*240-120)+'px');p.style.animationDuration=(1.4+Math.random()*1.6)+'s';document.getElementById('particles').appendChild(p);setTimeout(()=>p.remove(),3200)}}
+document.getElementById('celebrateBtn').addEventListener('click', () => {
+    const colors = ['#00bfff', '#1e90ff', '#4169e1', '#87cefa', '#ffffff'];
+
+    for (let burst = 0; burst < 20; burst++) {
+        setTimeout(() => {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * (window.innerHeight * 0.65);
+
+            const count = 45;
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('span');
+                const angle = (Math.PI * 2 * i) / count;
+                const distance = 70 + Math.random() * 100;
+
+                particle.style.cssText = `
+                    position:fixed;
+                    left:${x}px;
+                    top:${y}px;
+                    width:5px;
+                    height:5px;
+                    border-radius:50%;
+                    background:${colors[Math.floor(Math.random() * colors.length)]};
+                    box-shadow:0 0 8px 3px #00bfff;
+                    pointer-events:none;
+                    z-index:9999;
+                `;
+
+                document.body.appendChild(particle);
+
+                particle.animate([
+                    { transform:'translate(0,0) scale(1)', opacity:1 },
+                    {
+                        transform:`translate(${Math.cos(angle)*distance}px,${Math.sin(angle)*distance}px) scale(0)`,
+                        opacity:0
+                    }
+                ], {
+                    duration:4000 + Math.random() * 700,
+                    easing:'cubic-bezier(.1,.7,.3,1)'
+                }).onfinish = () => particle.remove();
+            }
+        }, burst * 350);
+    }
+});
+  
+function trail(x,y){const now=performance.now();if(now-lastTrail<24)return;lastTrail=now;const p=document.createElement('span');p.className='particle';const size=4+Math.random()*5;p.style.width=size+'px';p.style.height=size+'px';p.style.left=x+'px';p.style.top=y+'px';p.style.setProperty('--dx',(Math.random()*45-22)+'px');p.style.animationDuration=(.8+Math.random()*.7)+'s';document.getElementById('particles').appendChild(p);setTimeout(()=>p.remove(),1700)}
+document.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||e.buttons)trail(e.clientX,e.clientY)});
+document.addEventListener('touchmove',e=>{for(const t of e.touches)trail(t.clientX,t.clientY)},{passive:true});
+const stars=document.getElementById('stars');for(let i=0;i<55;i++){const s=document.createElement('span');s.className='star';s.textContent=Math.random()>.5?'✦':'·';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.fontSize=(8+Math.random()*14)+'px';s.style.animationDelay=Math.random()*4+'s';stars.appendChild(s)}
+</script>
+</body>
+</html>
